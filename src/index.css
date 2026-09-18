@@ -1,0 +1,126 @@
+@import "tailwindcss";
+@import "react-grid-layout/css/styles.css";
+@import "react-resizable/css/styles.css";
+
+@theme {
+  --font-mono: "SF Mono", Monaco, "Cascadia Code", "Fira Code", "DejaVu Sans Mono", "Liberation Mono", monospace;
+  --font-body: "IBM Plex Sans", "Segoe UI", sans-serif;
+}
+
+:root {
+  /* Core palette */
+  --bg: #07111a;
+  --surface: #0f1b25;
+  --surface-hover: #172531;
+  --border: #213447;
+  --border-strong: #33516a;
+  --text: #ecf6ff;
+  --text-muted: #96adc2;
+  --text-dim: #667b8f;
+  --surface-elevated: rgba(13, 26, 36, 0.86);
+
+  /* Map / globe */
+  --map-bg: #06121a;
+  --map-grid: #173749;
+
+  /* Brand */
+  --accent: #5eead4;
+  --accent-glow: rgba(94, 234, 212, 0.32);
+  --fleet: #fbbf24;
+
+  /* Severity */
+  --sev-info: #38bdf8;
+  --sev-medium: #f59e0b;
+  --sev-high: #f97316;
+  --sev-critical: #ef4444;
+
+  /* Kind colours */
+  --kind-flight: #a5f3fc;
+  --kind-ship: #67e8f9;
+  --kind-incident: #ef4444;
+  --kind-fleet: #facc15;
+
+  color-scheme: dark;
+}
+
+@layer base {
+  html, body, #root {
+    height: 100%;
+    background:
+      radial-gradient(circle at top left, rgba(94, 234, 212, 0.12), transparent 30%),
+      radial-gradient(circle at top right, rgba(56, 189, 248, 0.12), transparent 22%),
+      linear-gradient(180deg, #07111a 0%, #050b12 100%);
+    color: var(--text);
+    font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--border-strong); }
+
+  kbd {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 1px 5px;
+    font-size: 10px;
+    color: var(--text-muted);
+  }
+}
+
+@layer components {
+  .ui-panel {
+    background: linear-gradient(180deg, rgba(15, 27, 37, 0.96), rgba(9, 16, 23, 0.98));
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .ui-panel-header {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .ui-header-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+  }
+
+  .ui-panel-content {
+    flex: 1;
+    overflow: auto;
+    position: relative;
+  }
+}
+
+/* Grid Layout Customizations */
+.react-grid-placeholder {
+  background: var(--accent) !important;
+  opacity: 0.1 !important;
+  border-radius: 12px !important;
+}
+
+.react-resizable-handle {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.ui-panel:hover .react-resizable-handle {
+  opacity: 1;
+}
